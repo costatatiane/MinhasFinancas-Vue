@@ -1,30 +1,25 @@
 <template>
   <div>
-    <button type="button" id="btn-import" v-on:click="importFinances">Importar</button>
-    <form @submit.prevent="onSubmit">
-      <p>
-        <label for="item">Item:</label>
-        <input id="item" v-model="item" type="text" placeholder="Item" />
-      </p>
+    <div class="align-center margins">
+      <button type="button" id="btn-import" v-on:click="importFinances">Importar</button>
+    </div>
 
-      <p>
-        <label for="date">Data:</label>
-        <input id="date" v-model="date" type="date" placeholder="dd/mm/aaaa" />
-      </p>
+    <form class="form">
+      <label for="item">Item:</label>
+      <input id="item" v-model="item" type="text" placeholder="Item" />
 
-      <p>
-        <label for="quantity">Quantidade:</label>
-        <input id="quantity" v-model="quantity" type="number" placeholder="00" />
-      </p>
+      <label for="date">Data:</label>
+      <input id="date" v-model="date" type="date" placeholder="dd/mm/aaaa" />
 
-      <p>
-        <label for="value">Valor:</label>
-        <input id="value" v-model="value" type="number" placeholder="00.00" />
-      </p>
+      <label for="quantity">Quantidade:</label>
+      <input id="quantity" v-model="quantity" type="number" placeholder="00" />
 
-      <p>
-        <input type="submit" value="Incluir" />
-      </p>
+      <label for="value">Valor:</label>
+      <input id="value" v-model="value" type="number" placeholder="00.00" />
+
+      <div class="align-center margins">
+        <button type="button" class="btn" id="btn-submit" v-on:click="onSubmit">Incluir</button>
+      </div>
     </form>
   </div>
 </template>
@@ -43,7 +38,7 @@ export default {
       date: null,
       quantity: null,
       value: null,
-      errors: [],
+      errors: []
     };
   },
   methods: {
@@ -85,18 +80,73 @@ export default {
 </script>
 
 <style scoped>
-h3 {
-  margin: 40px 0 0;
+.body {
+  width: 40%;
+  margin: 0px auto;
+  font-family: tahoma;
+  color: #282828;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+
+.align-center {
+  text-align: center;
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
+
+label {
+  font-size: 16px;
 }
-a {
-  color: #42b983;
+
+.logo {
+  width: 72px;
+  height: 72px;
+  margin: 0px auto;
+}
+
+.color-box {
+  width: 40px;
+  height: 40px;
+  margin-top: 5px;
+}
+
+button {
+  margin-top: 30px;
+  border: none;
+  background-color: #1e95ea;
+  color: white;
+  height: 40px;
+  width: 100px;
+  font-size: 14px;
+}
+
+.form {
+  width: 100%;
+  padding: 20px;
+  border: 1px solid #d8d8d8;
+}
+
+input {
+  width: 96%;
+  height: 25px;
+  margin-bottom: 20px;
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: inset 0px 0px 0px 0px;
+  font-size: 14px;
+  margin-top: 10px;
+}
+.btn {
+  margin: 0px auto;
+}
+
+.margins {
+  margin: 20px 0px;
+}
+
+.table {
+    width: 100%
+}
+
+.width {
+    text-align: left;
+    width: 25%
 }
 </style>
