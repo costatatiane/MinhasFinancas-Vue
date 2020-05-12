@@ -1,6 +1,6 @@
 <template>
   <div>
-    <register-finance @create-finance="createFinance"></register-finance>
+    <register-finance @create-finance="createFinance" @import-finances="importFinances"></register-finance>
     <table class="table">
       <thead>
         <tr>
@@ -13,7 +13,7 @@
       <tbody>
         <tr v-for="finance in this.finances" :key="finance.item">
           <td>{{finance.item}}</td>
-          <td>{{dateToText(finance.date)}}</td>
+          <td>{{finance.date}}</td>
           <td>{{finance.quantity}}</td>
           <td>{{finance.value}}</td>
         </tr>
@@ -46,7 +46,17 @@ export default {
     },
     dateToText(date) {
         return date.split('-').reverse().join('-');
-    }
+    },
+    importFinances(finances) {
+        finances.forEach(finance => {
+            this.finances.push({          
+                item: finance.item,
+                date: finance.data,
+                quantity: finance.quantidade,
+                value: finance.valor})
+        });
+        console.log(this.finances);
+    },
   }
 };
 </script>

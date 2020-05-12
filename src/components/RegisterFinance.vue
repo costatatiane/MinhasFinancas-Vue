@@ -1,5 +1,6 @@
 <template>
   <div>
+    <button type="button" id="btn-import" v-on:click="importFinances">Importar</button>
     <form @submit.prevent="onSubmit">
       <p>
         <label for="item">Item:</label>
@@ -29,6 +30,7 @@
 </template>
 
 <script>
+import axios from "axios";
 
 export default {
   name: "RegisterFinance",
@@ -41,7 +43,7 @@ export default {
       date: null,
       quantity: null,
       value: null,
-      errors: []
+      errors: [],
     };
   },
   methods: {
@@ -56,15 +58,27 @@ export default {
         };
         this.$emit("create-finance", finance);
         (this.item = null),
-        (this.date = null),
-        (this.quantity = null),
-        (this.value = null);
+          (this.date = null),
+          (this.quantity = null),
+          (this.value = null);
       } else {
         if (!this.item) this.errors.push("Item obrigatório");
         if (!this.date) this.errors.push("Data obrigatório");
         if (!this.quantity) this.errors.push("Quantidade obrigatório");
         if (!this.value) this.errors.push("Valor obrigatório");
       }
+    },
+    importFinances() {
+      let finances;
+      axios
+        .get("https://evening-badlands-20922.herokuapp.com/financas/semana")
+        .then(response => {
+          finances = response.data;
+          this.$emit("import-finances", finances);
+        })
+        .catch(e => {
+          this.erros.push(e);
+        });
     }
   }
 };
